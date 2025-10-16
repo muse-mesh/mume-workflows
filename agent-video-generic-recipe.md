@@ -1,6 +1,6 @@
 # Automated Video Generation — LLM Actionable Workflow
 
-This workflow enables an AI agent or LLM to generate a narrated video about any given topic (news, explainer, educational, etc.), using modular tools for scriptwriting, TTS, subclipping, editing, and merging.
+This workflow enables an AI agent or LLM to generate a narrated video about any given topic, using modular tools for scriptwriting, TTS, subclipping, editing, and merging.
 
 ---
 
@@ -17,7 +17,7 @@ This workflow enables an AI agent or LLM to generate a narrated video about any 
 ---
 
 ### 2. Script Drafting
-**Tool:** LLM text generator
+**Tool:** LLM text generator  
 **Steps:**
 - Draft a natural script suited for video narration, with one paragraph for each segment.
 - Include a strong intro and concluding statement for narrative flow.
@@ -36,7 +36,7 @@ This workflow enables an AI agent or LLM to generate a narrated video about any 
 ---
 
 ### 4. Audio Segmentation & Timeline Extraction
-**Tool:** Speech-to-Text (STT)
+**Tool:** Speech-to-Text (STT)  
 **Steps:**
 - Analyze the audio file to extract section timestamps for each segment/paragraph.
 **Input:** Audio file.
@@ -45,7 +45,7 @@ This workflow enables an AI agent or LLM to generate a narrated video about any 
 ---
 
 ### 5. Visual Asset Search & Subclipping
-**Tool:** Stock video/image search API & subclipper
+**Tool:** Stock video/image search API & subclipper  
 **Steps:**
 - For each segment/subtopic, generate visual search keywords from the summary.
 - Search for stock footage, animations, or relevant visuals.
@@ -56,7 +56,7 @@ This workflow enables an AI agent or LLM to generate a narrated video about any 
 ---
 
 ### 6. Video Clip Sequencing
-**Tool:** Video merger/editor
+**Tool:** Video merger/editor  
 **Steps:**
 - Place video clips in timeline order corresponding to audio/narration segments.
 **Input:** Video clips in order.
@@ -65,7 +65,7 @@ This workflow enables an AI agent or LLM to generate a narrated video about any 
 ---
 
 ### 7. Overlay Voiceover on Video
-**Tool:** Audio/video merger
+**Tool:** Audio/video merger  
 **Steps:**
 - Merge narration audio over the video timeline.
 - Ensure alignment of voiceover and visuals per segment timestamps.
@@ -75,7 +75,7 @@ This workflow enables an AI agent or LLM to generate a narrated video about any 
 ---
 
 ### 8. (Optional) Documentation & Delivery
-**Tool:** Markdown generator & GitHub API
+**Tool:** Markdown generator & GitHub API  
 **Steps:**
 - Write a summary of flow, sources, segment mapping, and attributions.
 - Save documentation in a repository.
@@ -109,5 +109,3 @@ This workflow enables an AI agent or LLM to generate a narrated video about any 
 
 ### To use:
 Provide the desired topic, desired number of segments, and any preferences to your agent. The system will orchestrate data collection, summarization, scriptwriting, TTS, visual search, video assembly, narration sync, and documentation using the above steps and tools.
-
----
