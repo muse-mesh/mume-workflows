@@ -33,6 +33,22 @@
 
 ---
 
+## Tools Used in the Workflow
+
+| Step                                | Tool/Service                              | Description                                                 |
+|------------------------------------- |-------------------------------------------|-------------------------------------------------------------|
+| News summarization                  | ChatGPT (OpenAI, search/news API)         | AI-based summarization of latest headlines                  |
+| Script drafting                     | ChatGPT                                   | Prompted news-style voiceover script creation               |
+| Voiceover generation                | Text-to-Speech (AI TTS, e.g., PlayAI)     | Converts news script to realistic audio voiceover           |
+| Audio speech analysis/timestamping  | AI Audio Analyzer (Speech-to-Text)        | Generates speech transcript & section timestamps            |
+| Stock video search                  | Pexels, manual/AI search                  | Sourced visually relevant video assets                      |
+| Video subclipping                   | Video Subclipper (API/Automation)         | Extracted 8s (or less) segments from found videos           |
+| Video merging/sequencing            | Video Combiner (API/Automation)           | Concatenates all subclips into single timeline file         |
+| Audio/video merging                 | Audio-Video Merger (API/Automation)       | Combines voiceover audio with the final news video          |
+| Markdown documentation + repo mgmt  | GitHub (repo, markdown file creation)     | Workflow/end-to-end documentation & sharing                 |
+
+---
+
 **Summary**: This workflow demonstrates rapid, automated creation of a news video from headline selection through script, narration, asset search, visual subclipping, full timeline construction, and audiovisual merge—all in one pipeline.
 
 ---
