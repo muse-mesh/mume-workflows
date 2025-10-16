@@ -1,109 +1,113 @@
-# Automated News Video Generation — LLM Actionable Workflow
+# Automated Video Generation — LLM Actionable Workflow
 
-This workflow describes the precise, tool-oriented steps an AI assistant or LLM agent should follow to generate an end-to-end news video from today’s US news using modular tools (search, TTS, subclipping, merging, etc).
+This workflow enables an AI agent or LLM to generate a narrated video about any given topic (news, explainer, educational, etc.), using modular tools for scriptwriting, TTS, subclipping, editing, and merging.
 
 ---
 
-## Workflow Steps (LLM Instructions)
+## Agent-Oriented Workflow Steps
 
-### 1. Fetch and Summarize Top News (US)
-**Tool:** Web/news search API or AI-powered news summarizer  
+### 1. Research and Summarize Given Topic
+**Tool:** Web search API, LLM summarizer, or domain-specific data source  
 **Steps:**
-- Search reliable news sources for top 5 stories about the US for today.
-- Summarize each story into a 1–2 sentence headline and short summary.
-**Output:** JSON or markdown list of 5 news stories with headlines and summaries.
+- Receive the assigned topic (e.g., “Quantum Computing”, “Climate Change”, “US News Today”) and any constraints (length, style, etc).
+- Research and extract key points, subtopics, or segments relevant to the topic.
+- Summarize each segment into a headline and a brief explanation.
+**Output:** JSON or markdown list of N topic segments with headlines and summaries.
 
 ---
 
 ### 2. Script Drafting
-**Tool:** LLM text generator  
+**Tool:** LLM text generator
 **Steps:**
-- Draft a broadcast-style script, one paragraph per news story.
-- Include an intro and a concise closing statement.
-**Input:** Summarized stories.
-**Output:** News video script (plain text).
+- Draft a natural script suited for video narration, with one paragraph for each segment.
+- Include a strong intro and concluding statement for narrative flow.
+**Input:** Summarized points from step 1.
+**Output:** Narration script (plain text).
 
 ---
 
 ### 3. Voiceover Generation
-**Tool:** AI Text-to-Speech (TTS)  
+**Tool:** AI Text-to-Speech (TTS)
 **Steps:**
-- Use the script as input to a TTS system with a “news anchor” voice preset.
+- Convert the script into realistic speech using TTS (voice/style can be selected based on context).
 **Input:** Script text.
-**Output:** Downloadable audio file (mp3/wav).
+**Output:** Audio narration file.
 
 ---
 
-### 4. Transcribe Audio & Create Timeline
-**Tool:** Speech-to-Text (STT)/audio segmenter  
+### 4. Audio Segmentation & Timeline Extraction
+**Tool:** Speech-to-Text (STT)
 **Steps:**
-- Analyze the TTS voiceover to extract timestamped sections matching each story.
+- Analyze the audio file to extract section timestamps for each segment/paragraph.
 **Input:** Audio file.
-**Output:** List of start/end timestamps and associated script sections.
+**Output:** Section timestamps and segment mapping.
 
 ---
 
 ### 5. Visual Asset Search & Subclipping
-**Tool:** Stock video search API & video subclipper  
+**Tool:** Stock video/image search API & subclipper
 **Steps:**
-- For each news story, issue search queries for relevant stock video (e.g., “US Capitol building”, “Wall Street”, etc.).
-- Select a video for each section and use a subclip tool to extract an 8s (or less) clip from each source.
-**Input:** Section summaries + keywords.
-**Output:** List of short video clip download links.
+- For each segment/subtopic, generate visual search keywords from the summary.
+- Search for stock footage, animations, or relevant visuals.
+- Subclip chosen footage to fit segment time (default to 8s or less per visual, or match narration timing if possible).
+**Input:** Keywords for each segment.
+**Output:** Set of short video clips for timeline.
 
 ---
 
-### 6. Sequence Video Clips
-**Tool:** Video merge/combine API  
+### 6. Video Clip Sequencing
+**Tool:** Video merger/editor
 **Steps:**
-- Arrange video clips in the news script order, matching the timeline.
-- Merge all subclips into a single video.
-**Input:** Ordered video clip links.
-**Output:** One combined news video file.
+- Place video clips in timeline order corresponding to audio/narration segments.
+**Input:** Video clips in order.
+**Output:** Combined video.
 
 ---
 
 ### 7. Overlay Voiceover on Video
-**Tool:** Audio/video merger/muxer  
+**Tool:** Audio/video merger
 **Steps:**
-- Merge the voiceover audio file onto the combined video so that speech matches visual segments.
-**Input:** Combined video + voiceover file.
-**Output:** Final news video with narration.
+- Merge narration audio over the video timeline.
+- Ensure alignment of voiceover and visuals per segment timestamps.
+**Input:** Merged video + narration audio.
+**Output:** Final composite video.
 
 ---
 
-### 8. (Optional) Documentation
-**Tool:** Markdown generator & GitHub API  
+### 8. (Optional) Documentation & Delivery
+**Tool:** Markdown generator & GitHub API
 **Steps:**
-- Document the news story sources, audio/video asset links, and workflow details.
-- Save the workflow summary as a markdown file in the project repo for reference and reproducibility.
+- Write a summary of flow, sources, segment mapping, and attributions.
+- Save documentation in a repository.
+**Input:** Internal workflow logs, outputs.
+**Output:** README or .md documentation file.
 
 ---
 
 ## Example Tool Table
 
-| Step           | Tool API or Plugin Example                |
-|----------------|------------------------------------------|
-| News search    | Bing News Search, Google Custom Search    |
-| Summarization  | OpenAI, Anthropic, in-context LLM         |
-| TTS            | PlayAI, ElevenLabs, Google TTS            |
-| STT            | OpenAI Whisper, AssemblyAI, PlayAI        |
-| Stock video    | Pexels API, Pixabay, Shutterstock         |
-| Subclip tool   | Video Subclip Automation (FFmpeg API etc.)|
-| Video combine  | Video Combine/Concat API                  |
-| Merge audio    | Audio/Video Merger/Muxer API              |
-| Markdown file  | GitHub API, LLM markdown generator        |
+| Step            | Tool/API Example(s)                         |
+|-----------------|---------------------------------------------|
+| Topic research  | Google/Bing Web Search, Wolfram, Wikipedia  |
+| Summarization   | OpenAI GPT, Claude, etc.                    |
+| Scriptwriting   | LLM prompt/completion                       |
+| TTS             | ElevenLabs, PlayAI, Google TTS              |
+| STT             | Whisper, AssemblyAI                         |
+| Stock assets    | Pexels, Pixabay, Storyblocks, Unsplash      |
+| Subclip/merge   | FFmpeg API, online video editors            |
+| AV merge        | ffmpeg, online AV merger                    |
+| Docs            | GitHub API, markdown generator              |
 
 ---
 
-## Meta
+## Inputs/Outputs
 
-- Inputs: News topics, headline count, voiceover style settings (optional)
-- Outputs: Final video URL, per-section logs, repo markdown summary
+- **Inputs:** Topic (any subject), number of segments, style preferences, language, duration or per-segment timing, etc.
+- **Outputs:** Final narrated video, per-segment logs, readme/attributions file.
 
 ---
 
-### To use:  
-Give your LLM or automation agent this workflow and access to the required tools/APIs described above.
+### To use:
+Provide the desired topic, desired number of segments, and any preferences to your agent. The system will orchestrate data collection, summarization, scriptwriting, TTS, visual search, video assembly, narration sync, and documentation using the above steps and tools.
 
 ---
